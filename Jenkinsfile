@@ -1,6 +1,9 @@
 pipeline {
     agent any  
-
+     environment {
+     JAVA_HOME = "C:\\Program Files\\Java\\jdk-21"
+        PATH = "${JAVA_HOME}\\bin;${env.PATH}"
+     }
     stages {
         stage('Clone from GitHub') {
             steps {
@@ -18,15 +21,6 @@ pipeline {
             steps {
                 bat 'java Stu'  
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline execution completed successfully!'
-        }
-        failure {
-            echo 'Pipeline execution failed!'
         }
     }
 }

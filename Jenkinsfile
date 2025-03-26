@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Compile Java') {
             steps {
-                bat 'javac Stu.java'
+                bat 'javac -d.Stu.java'
             }
         }
         stage('Run Java Program') {

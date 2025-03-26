@@ -1,33 +1,24 @@
 pipeline {
     agent any
-
+    environment {
+        JAVA_HOME = "C:\\Program Files\\Java\\jdk-21"
+        PATH = "${JAVA_HOME}\\bin;${env.PATH}"
+    }
     stages {
         stage('Clone from GitHub') {
             steps {
-                git 'https://github.com/madhuk54/test.git'
+                git branch: 'main', url: 'https://github.com/madhuk54/test.git'
             }
         }
-
         stage('Compile Java') {
             steps {
-                bat 'javac Stu.java'  
+                bat 'javac Stu.java'
             }
         }
-
         stage('Run Java Program') {
             steps {
-                bat 'java Stu' 
+                bat 'java stu'  
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build completed successfully!'
-        }
-        failure {
-            echo 'Build failed. Check logs for errors.'
         }
     }
 }
-
